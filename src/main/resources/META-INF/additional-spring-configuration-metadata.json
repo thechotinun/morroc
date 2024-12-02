@@ -1,0 +1,39 @@
+{
+    "properties": [
+      {
+        "name": "app.name",
+        "type": "java.lang.String",
+        "description": "App name."
+      },
+      {
+        "name": "app.port",
+        "type": "java.lang.String",
+        "description": "PORT."
+      },
+      {
+        "name": "app.google-client-id",
+        "type": "java.lang.String",
+        "description": "Google Client ID for authentication."
+      },
+      {
+        "name": "app.google-client-secret",
+        "type": "java.lang.String",
+        "description": "Google Client secret for authentication."
+      },
+      {
+        "name": "app.google-redirect-uri",
+        "type": "java.lang.String",
+        "description": "Google redirect uri for authentication."
+      },
+      {
+        "name": "app.jwt-secret",
+        "type": "java.lang.String",
+        "description": "jwt-secret for authentication."
+      },
+      {
+        "name": "app.jwt-expiration",
+        "type": "java.lang.int",
+        "description": "jwt-expiration for authentication."
+      }
+    ]
+  }
