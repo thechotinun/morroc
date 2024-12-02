@@ -20,7 +20,7 @@ ENV GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
 ENV JWT_SECRET=${JWT_SECRET}
 
 # Copy the Spring Boot application JAR
-ADD ./target/auth-service-0.0.1.jar /app/app.jar
+ADD ./target/morroc-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Expose the application port
 EXPOSE 3100
