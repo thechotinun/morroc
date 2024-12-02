@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(
     servers = {
-        @Server(url = "/api", description = "Default Server"),
-        @Server(url = "https://morroc-dev-service.lab-359.work/api", description = "Development Server")
+        @Server(url = "https://morroc-dev-service.lab-359.work/api", description = "Development Server"),
+        @Server(url = "http://localhost:3100/api", description = "Local Server")
     }
 )
 public class OpenAPIConfig {
