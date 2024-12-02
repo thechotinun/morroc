@@ -1,0 +1,29 @@
+# Stage 1: Build the Spring Boot application
+FROM openjdk:24-ea-17-slim-bookworm AS app
+
+# Define build-time arguments
+ARG DATASOURCE_URL
+ARG DATASOURCE_USERNAME
+ARG DATASOURCE_PASSWORD
+ARG GOOGLE_CLIENT_ID
+ARG GOOGLE_CLIENT_SECRET
+ARG GOOGLE_REDIRECT_URI
+ARG JWT_SECRET
+
+# Set environment variables
+ENV DATASOURCE_URL=${DATASOURCE_URL}
+ENV DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+ENV DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+ENV GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+ENV GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+ENV GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
+ENV JWT_SECRET=${JWT_SECRET}
+
+# Copy the Spring Boot application JAR
+ADD ./target/auth-service-0.0.1.jar /app/app.jar
+
+# Expose the application port
+EXPOSE 3100
+
+# Run the Spring Boot application
+CMD ["java", "-Dserver.port=3100", "-jar", "/app/app.jar"]

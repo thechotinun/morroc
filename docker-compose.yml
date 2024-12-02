@@ -1,0 +1,50 @@
+services:
+  backend:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROFILE_ACTIVE: production
+        DATASOURCE_URL: ${DATASOURCE_URL}
+        DATASOURCE_USERNAME: ${DATASOURCE_USERNAME}
+        DATASOURCE_PASSWORD: ${DATASOURCE_PASSWORD}
+        GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+        GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+        GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI}
+        JWT_SECRET: ${JWT_SECRET}
+    # env_file: #for example local build docker
+    #   - .env
+    environment:
+      - PROFILE_ACTIVE=production
+      - DATASOURCE_URL
+      - DATASOURCE_USERNAME
+      - DATASOURCE_PASSWORD
+      - GOOGLE_CLIENT_ID
+      - GOOGLE_CLIENT_SECRET
+      - GOOGLE_REDIRECT_URI
+      - JWT_SECRET
+    expose:
+      - "3100"
+    container_name: backend
+    image: backend:latest
+    networks:
+      - network-morroc
+
+  nginx-morroc-backend:
+    restart: always
+    image: nginx:latest-backend
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx-morroc-backend
+    ports:
+      - "3100:80"
+    depends_on:
+      - backend
+    networks:
+      - network-morroc
+
+networks:
+  network-morroc:
+    external: true
